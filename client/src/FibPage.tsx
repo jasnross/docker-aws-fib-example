@@ -41,7 +41,7 @@ export const FibPage: React.FunctionComponent = () => {
   useEffect(() => {
     fetchValues();
     fetchIndexes();
-  });
+  }, []);
 
   const renderSeenIndexes = () => {
     return state.seenIndexes.map(({ number }) => number).join(', ');
@@ -56,6 +56,7 @@ export const FibPage: React.FunctionComponent = () => {
   };
 
   const handleIndexChange = (event: React.FormEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setState({ ...state, inputIndex: event.currentTarget.value });
   };
 

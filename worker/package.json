@@ -8,6 +8,7 @@
     "dev": "nodemon"
   },
   "dependencies": {
+    "@types/node": "^11.9.6",
     "@types/redis": "^2.8.10",
     "nodemon": "^1.18.10",
     "redis": "^2.8.0",
