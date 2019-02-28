@@ -48,7 +48,9 @@ app.get('/values/current', (_req, res) => {
 });
 
 app.post('/values', (req, res) => {
-  const index = req.body.value;
+  const index = req.body.index;
+  console.dir(req.body);
+
   const indexNumber = parseInt(index);
   if (indexNumber > 40) {
     return res.status(422).send('Index too high');
