@@ -1,0 +1,57 @@
+# Exclude compiled binaries
+*.exe
+bin/
+obj/
+tmp/
+!src/packages/
+
+# Exclude private keys
+*.rsa
+
+# Backup files
+*.bak
+
+# NPM Publish artifacts
+src/**/*.tgz
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Intellij Idea
+*.iml
+.idea/
+
+# Visual Studio
+.vs/
+*.sdf
+*.opensdf
+UpgradeLog.htm
+UpgradeLog*.htm
+
+# NPM / Bower
+bower_components/
+node_modules/
+npm-debug.log
+yarn*.log
+lerna*.log
+*.lerna_backup
+yarn*.log
+
+# Use yarn instead of npm
+package-lock.json
+
+# Ignore user's specific generated Docker configuration files
+docker-compose.dev.yml
+docker-compose.dev.yaml
+src/**/launch.gen.json
+src/**/get-pid.gen.js
+
+# Ignore test results
+results/
+coverage/
