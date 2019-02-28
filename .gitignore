@@ -4,6 +4,7 @@ bin/
 obj/
 tmp/
 !src/packages/
+build/
 
 # Exclude private keys
 *.rsa
