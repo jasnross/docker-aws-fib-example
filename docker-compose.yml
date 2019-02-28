@@ -30,14 +30,14 @@ services:
       - /app/node_modules
     environment:
       - REDIS_HOST=redis
-      - REDIS_PORT=6380
+      - REDIS_PORT=6379
   api:
     build:
       context: ./server
       dockerfile: Dockerfile.dev
     environment:
       - REDIS_HOST=redis
-      - REDIS_PORT=6380
+      - REDIS_PORT=6379
       - PGUSER=postgres
       - PGHOST=postgres
       - PGDATABASE=postgres
