@@ -1,0 +1,16 @@
+version: "3.1"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=notapassword
+  redis:
+    image: redis:latest
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./server:/app
+      - /app/node_modules
