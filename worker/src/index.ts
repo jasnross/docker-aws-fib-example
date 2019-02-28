@@ -19,6 +19,7 @@ const fib = (index: number): number => {
 };
 
 sub.on('message', (channel, message) => {
+  console.log(`MESSAGE: ${message}`);
   const result = fib(parseInt(message)).toString();
   redisClient.hset('values', message, result);
 });

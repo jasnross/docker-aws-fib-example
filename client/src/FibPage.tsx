@@ -9,33 +9,19 @@ type SeenIndexValues = {
   [index: string]: IndexValue;
 };
 
-type FibPageState = {
-  seenIndexes: IndexValue[];
-  values: SeenIndexValues;
-  inputIndex: string;
-};
-
 export const FibPage: React.FunctionComponent = () => {
-  const [state, setState] = useState<FibPageState>({
-    inputIndex: '',
-    seenIndexes: [],
-    values: {},
-  });
+  const [values, setValues] = useState<SeenIndexValues>({});
+  const [seen, setSeenIndexes] = useState<IndexValue[]>([]);
+  const [inputIndex, setInputIndex] = useState<string>('');
 
   const fetchValues = async () => {
     const values = await axios.get<SeenIndexValues>('/api/values/current');
-    setState({
-      ...state,
-      values: values.data,
-    });
+    setValues(values.data);
   };
 
   const fetchIndexes = async () => {
     const seenIndexes = await axios.get<IndexValue[]>('/api/values/all');
-    setState({
-      ...state,
-      seenIndexes: seenIndexes.data,
-    });
+    setSeenIndexes(seenIndexes.data);
   };
 
   useEffect(() => {
@@ -44,50 +30,43 @@ export const FibPage: React.FunctionComponent = () => {
   }, []);
 
   const renderSeenIndexes = () => {
-    return state.seenIndexes.map(({ number }) => number).join(', ');
+    return seen!.map(({ number }) => number).join(', ');
   };
 
   const renderValues = () => {
-    return Object.keys(state.values).map(key => (
+    return Object.keys(values).map(key => (
       <div key={key}>
-        For index {key} I calculated {state.values[key]}
+        For index {key} I calculated {values[key]}
       </div>
     ));
   };
 
   const handleIndexChange = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    setState({ ...state, inputIndex: event.currentTarget.value });
+    setInputIndex(event.currentTarget.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios.post('/api/values', {
-      index: state.inputIndex,
+      index: inputIndex,
     });
-    setState({
-      ...state,
-      inputIndex: '',
-    });
+    setInputIndex('');
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>Index:</label>
-        <input
-          type="text"
-          value={state.inputIndex}
-          onChange={handleIndexChange}
-        />
+        <input type="text" value={inputIndex} onChange={handleIndexChange} />
         <button type="submit">Submit</button>
       </form>
 
       <h3>Seen:</h3>
-      {renderSeenIndexes()}
+      <div>{renderSeenIndexes()}</div>
 
       <h3>Calculated:</h3>
-      {renderValues()}
+      <div>{renderValues()}</div>
     </div>
   );
 };
