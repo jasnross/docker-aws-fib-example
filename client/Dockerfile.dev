@@ -1,0 +1,8 @@
+FROM node:alpine
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install
+COPY src ./src
+COPY public ./public
+COPY tsconfig.json ./
+CMD ["yarn", "run", "start"]
