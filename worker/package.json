@@ -1,18 +1,10 @@
 {
-  "name": "worker",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon"
-  },
   "dependencies": {
-    "@types/node": "^11.9.6",
-    "@types/redis": "^2.8.10",
-    "nodemon": "^1.18.10",
-    "redis": "^2.8.0",
-    "ts-node": "^8.0.2",
-    "typescript": "^3.3.3333"
+    "nodemon": "1.18.3",
+    "redis": "2.8.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon"
   }
 }
